@@ -29,14 +29,15 @@ def merge(left, right):
 if __name__ == "__main__":
     input_str = input("Enter numbers, separated by ',': ")
 
-    input_list = input_str.split(",")
-    value_list = []
-    for x in input_list:
-        try:
-            value_list.append(int(x))
-        except ValueError:
-            print("Invalid input.")
-            quit(1)
+    # Split input string, remove whitespace, and convert to integers
+    input_list = [x.strip() for x in input_str.split(",")]
+    
+    try:
+        # Convert to integers
+        value_list = [int(x) for x in input_list]
+    except ValueError:
+        print("Invalid input.")
+        quit(1)
 
     sorted_list = mergesort(value_list)
     print(sorted_list)
