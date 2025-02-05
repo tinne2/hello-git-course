@@ -1,39 +1,59 @@
-def mergesort(array):
-    if len(array) <= 1:
-        return array
-
-    m = len(array) // 2
-    left = mergesort(array[:m])
-    right = mergesort(array[m:])
-    return merge(left, right)
-
-
-def merge(left, right):
-    merged = []
-    while len(left) > 0 and len(right) > 0:
-        if left[0] <= right[0]:
-            merged.append(left.pop(0))
-        else:
-            merged.append(right.pop(0))
-    if len(left) > 0:
-        merged += left
-    else:
-        merged += right
-    return merged
-
-
+def merge_sort(arr):
+    if len(arr) > 1:
+        # Print the current state of the array
+        print(f"array: {arr}")
+        
+        # Find the middle of the array
+        mid = len(arr) // 2
+        left_half = arr[:mid]
+        right_half = arr[mid:]
+        
+        # Recursively split the array
+        merge_sort(left_half)
+        merge_sort(right_half)
+        
+        i = j = k = 0
+        
+        # Merge the left and right halves
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                arr[k] = left_half[i]
+                i += 1
+            else:
+                arr[k] = right_half[j]
+                j += 1
+            k += 1
+        
+        # Check if any element was left in the left_half
+        while i < len(left_half):
+            arr[k] = left_half[i]
+            i += 1
+            k += 1
+        
+        # Check if any element was left in the right_half
+        while j < len(right_half):
+            arr[k] = right_half[j]
+            j += 1
+            k += 1
+        
+        # Print the merged array after each step
+        print(f"Merging...\nleft: {left_half}\nright: {right_half}\nmerged: {arr}")
+        
+# Main function to run the program
 if __name__ == "__main__":
+    # Get the input list from the user
     input_str = input("Enter numbers, separated by ',': ")
-
-    # Split input string, remove whitespace, and convert to integers
-    input_list = [x.strip() for x in input_str.split(",")]
-
-    try:
-        # Convert to integers
-        value_list = [int(x) for x in input_list]
-    except ValueError:
-        print("Invalid input.")
-        quit(1)
-
-    sorted_list = mergesort(value_list)
-    print(sorted_list)
+    input_list = input_str.split(',')
+    
+    # Convert the input to integers
+    value_list = [int(x) for x in input_list]
+    
+    # Print the initial input
+    print(f"input_list: {input_list}")
+    print(f"value_list: {value_list}")
+    
+    # Sort the list using merge_sort
+    merge_sort(value_list)
+    
+    # Print the final sorted array
+    print(f"Sorted array: {value_list}")
