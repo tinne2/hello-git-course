@@ -43,7 +43,7 @@ def merge_sort(arr):
 if __name__ == "__main__":
     # Get the input list from the user
     input_str = input("Enter numbers, separated by ',': ")
-    input_list = input_str.split(',')
+    input_list = [x.strip() for x in input_str.split(',')]
     
     # Convert the input to integers
     value_list = [int(x) for x in input_list]
