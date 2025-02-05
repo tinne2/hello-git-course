@@ -3,7 +3,6 @@ def mergesort(array):
         return array
 
     m = len(array) // 2
-
     left = mergesort(array[:m])
     right = mergesort(array[m:])
 
@@ -30,10 +29,8 @@ def merge(left, right):
 if __name__ == "__main__":
     input_str = input("Enter numbers, separated by ',': ")
 
-    # Convert the input string to a list of integers
     input_list = input_str.split(",")
     value_list = []
-
     for x in input_list:
         try:
             value_list.append(int(x))
