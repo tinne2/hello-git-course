@@ -22,20 +22,20 @@ if __name__ == "__main__":
     # Get input list from user
     input_str = input("Enter numbers, separated by ',': ")
     
-    # Convert input string to a list of strings
+    # Convert input string to a list of strings (e.g., ['1', '5', '6', ...])
     input_list = input_str.split(',')
     
-    # Convert the list of strings to a list of integers
+    # Convert the list of strings to a list of integers (e.g., [1, 5, 6, ...])
     value_list = [int(i) for i in input_list]
     
-    # Print the input list (as strings)
+    # Print the input list (as strings) - exactly as ['1', '5', '6', ...]
     print(f"input_list: {input_list}")
     
-    # Print the value list (as integers)
+    # Print the value list (as integers) - exactly as [1, 5, 6, ...]
     print(f"value_list: {value_list}")
     
     # Perform the merge sort
     sorted_list = merge_sort(value_list)
     
-    # Print the sorted array
+    # Print the sorted array (as final result)
     print(f"array: {sorted_list}")
