@@ -26,8 +26,15 @@ def merge(left, right):
 
 # Input parsing: change input format as needed
 input_str = input("Enter numbers, separated by ',': ")
-input_list = [int(x) for x in input_str.split(',')]
+# Strip spaces from the input values
+input_list = [int(x.strip()) for x in input_str.split(',')]
+
+# Debugging: Print the input list without spaces after commas
+print(f"input_list: {[x.strip() for x in input_str.split(',')]}")
+# Print the value list without spaces after commas
+print(f"value_list: {str(input_list).replace(', ', ',')}")
 
 # Call mergesort on the parsed input list
 sorted_list = mergesort(input_list)
-print(f"Sorted array: {sorted_list}")
+# Print the final sorted array without the prefix
+print(sorted_list)
