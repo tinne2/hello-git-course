@@ -22,11 +22,16 @@ if __name__ == "__main__":
     # Get input list from user
     input_str = input("Enter numbers, separated by ',': ")
     
-    # Convert input string to a list of numbers
+    # Convert input string to a list of strings
     input_list = input_str.split(',')
+    
+    # Convert the list of strings to a list of integers
     value_list = [int(i) for i in input_list]
     
+    # Print the input list (as strings)
     print(f"input_list: {input_list}")
+    
+    # Print the value list (as integers)
     print(f"value_list: {value_list}")
     
     # Perform the merge sort
