@@ -1,41 +1,45 @@
-def merge_sort(array):
+def mergesort(array):
     if len(array) <= 1:
         return array
-    else:
-        mid = len(array) // 2
-        left = merge_sort(array[:mid])
-        right = merge_sort(array[mid:])
-        
-        return merge(left, right)
+
+    m = len(array) // 2
+
+    left = mergesort(array[:m])
+    right = mergesort(array[m:])
+
+    return merge(left, right)
+
 
 def merge(left, right):
-    sorted_list = []
-    while left and right:
-        if left[0] < right[0]:
-            sorted_list.append(left.pop(0))
+    merged = []
+
+    while len(left) > 0 and len(right) > 0:
+        if left[0] <= right[0]:
+            merged.append(left.pop(0))
         else:
-            sorted_list.append(right.pop(0))
-    sorted_list.extend(left or right)
-    return sorted_list
+            merged.append(right.pop(0))
+
+    if len(left) > 0:
+        merged += left
+    else:
+        merged += right
+
+    return merged
+
 
 if __name__ == "__main__":
-    # Get input list from user
     input_str = input("Enter numbers, separated by ',': ")
-    
-    # Convert input string to a list of strings (e.g., ['1', '5', '6', ...])
-    input_list = input_str.split(',')
-    
-    # Convert the list of strings to a list of integers (e.g., [1, 5, 6, ...])
-    value_list = [int(i) for i in input_list]
-    
-    # Print the input list (as strings) - exactly as ['1', '5', '6', ...]
-    print(f"input_list: {input_list}")
-    
-    # Print the value list (as integers) - exactly as [1, 5, 6, ...]
-    print(f"value_list: {value_list}")
-    
-    # Perform the merge sort
-    sorted_list = merge_sort(value_list)
-    
-    # Print the sorted array (as final result)
-    print(f"array: {sorted_list}")
+
+    # Convert the input string to a list of integers
+    input_list = input_str.split(",")
+    value_list = []
+
+    for x in input_list:
+        try:
+            value_list.append(int(x))
+        except ValueError:
+            print("Invalid input.")
+            quit(1)
+
+    sorted_list = mergesort(value_list)
+    print(sorted_list)
