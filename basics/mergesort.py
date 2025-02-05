@@ -3,6 +3,7 @@ def mergesort(arr):
     if len(arr) <= 1:
         return arr
     mid = len(arr) // 2
+    print(f"m: {mid}")  # Debugging: show the midpoint
     left_half = mergesort(arr[:mid])  # Recursively sort the left half
     right_half = mergesort(arr[mid:])  # Recursively sort the right half
     return merge(left_half, right_half)
