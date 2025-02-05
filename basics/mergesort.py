@@ -1,52 +1,49 @@
+def merge_sort(arr, debug=False):
+    # Base case: if the list is of length 1 or less, return it as is
+    if len(arr) <= 1:
+        return arr
 
-def debug_print(debug_msg=None, **kwargs):
+    # Divide the list into two halves
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid], debug)
+    right = merge_sort(arr[mid:], debug)
 
-    if debug_msg:
-        print(debug_msg)
+    # Merge the two sorted halves
+    return merge(left, right, debug)
 
-    for key, value in kwargs.items():
-        print("{}: {}".format(key, value))
+def merge(left, right, debug=False):
+    result = []
+    i = j = 0
 
-
-def mergesort(array):
-    if len(array) <= 1:
-        return array
-
-    m = len(array) // 2
-
-    left = mergesort(array[:m])
-    right = mergesort(array[m:])
-
-    return merge(left, right)
-
-
-def merge(left, right):
-    merged = []
-
-    while len(left) > 0 and len(right) > 0:
-        if left[0] <= right[0]:
-            merged.append(left.pop(0))
+    # Merge the two lists by comparing the elements
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
         else:
-            merged.append(right.pop(0))
+            result.append(right[j])
+            j += 1
 
-    if len(left) > 0:
-        merged += left
-    else:
-        merged += right
+    # Add remaining elements (if any)
+    result.extend(left[i:])
+    result.extend(right[j:])
 
-    return merged
+    # Debugging output: Print merge steps (if debug is True)
+    if debug:
+        print(f"Merging...\nleft: {left}\nright: {right}\nmerged: {result}")
 
+    return result
 
+# Main function to take input and sort the list
 if __name__ == "__main__":
-    input_str = input("Enter numbers, separated by ',': ")
-    input_list = input_str.split(",")
-    value_list = []
-    for x in input_list:
-        try:
-            value_list.append(int(x))
-        except ValueError as err:
-            print("Invalid input.")
-            quit(1)
+    # Get input from user (comma-separated numbers)
+    input_list = input("Enter numbers, separated by ',': ").split(',')
+    
+    # Convert the input to a list of integers
+    value_list = [int(x) for x in input_list]
 
-    sorted_list = mergesort(value_list)
+    # Perform merge sort on the list and print the sorted list
+    sorted_list = merge_sort(value_list)
+
+    # Print the final sorted list
     print(sorted_list)
