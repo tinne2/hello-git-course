@@ -38,7 +38,7 @@ def merge_sort(arr):
         
         # Print the merged array after each step
         print(f"Merging...\nleft: {left_half}\nright: {right_half}\nmerged: {arr}")
-        
+
 # Main function to run the program
 if __name__ == "__main__":
     # Get the input list from the user
